@@ -1,0 +1,82 @@
+﻿<Window x:Class="ChekRAO.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChekRAO"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Closing="Window_Closing">
+    <Grid ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*"></ColumnDefinition>
+            <ColumnDefinition Width="74*"/>
+            <ColumnDefinition Width="11*"></ColumnDefinition>
+            <ColumnDefinition Width="88*"/>
+            <ColumnDefinition Width="99*"></ColumnDefinition>
+            <ColumnDefinition Width="99*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" Content="Поставщик" Grid.ColumnSpan="2"   />
+        <Label Grid.Column="2" Grid.Row="0" Content="Получатель" Grid.ColumnSpan="2"   />
+        <ComboBox Name="Post_List" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" DisplayMemberPath="Name" IsEditable="True"  />
+        <ComboBox Name="Pol_List" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"  DisplayMemberPath="Name" IsEditable="True"/>
+        <DatePicker Name="StartDate" Grid.Column="4" Grid.Row="1"  />
+        <DatePicker Name="EndDate" Grid.Column="5" Grid.Row="1"  />
+
+        <CheckBox Name="Check_RAOCod" Grid.Column="2" Grid.Row="3" Content="Код РАО" Grid.ColumnSpan="2"  />
+        <CheckBox Name="Check_Kbm" Grid.Column="2" Grid.Row="4" Content="Объем" Grid.ColumnSpan="2"  />
+        <CheckBox Name="Check_Kg" Grid.Column="2" Grid.Row="5" Content="Масса" Grid.ColumnSpan="2"  />
+        <!--<CheckBox Name="Check_" Grid.Column="2" Grid.Row="6" Content="Активность" Grid.ColumnSpan="2"  />-->
+        <Button Name="Search" Grid.Column="4" Grid.Row="4" Content="Поиск"  Click="Search_Click"/>
+        <Button Grid.Column="5" Grid.Row="4" Content="Добавить связи ОКПО"  />
+        <ListView Name="OpsList" Grid.Row="6" Grid.RowSpan="7" Grid.Column="0" Grid.ColumnSpan="7">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Отметка" Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding IsSelected}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Имя компании" DisplayMemberBinding="{Binding MainCompany.Name}"/>
+                    <GridViewColumn Header="Код операции" DisplayMemberBinding="{Binding OpCode}"/>
+                    <GridViewColumn Header="Дата операции" DisplayMemberBinding="{Binding OpDate}"/>
+                    <GridViewColumn Header="Код RAO" DisplayMemberBinding="{Binding RAOCode}"/>
+                    <GridViewColumn Header="Объем" DisplayMemberBinding="{Binding Kbm}"/>
+                    <GridViewColumn Header="Вес" DisplayMemberBinding="{Binding Kg}"/>
+                    <GridViewColumn Header="Нуклид" DisplayMemberBinding="{Binding Nuclid}"/>
+                    <GridViewColumn Header="Дата активности" DisplayMemberBinding="{Binding ActDate}"/>
+                    <GridViewColumn Header="Вид документа" DisplayMemberBinding="{Binding DocVid}"/>
+                    <GridViewColumn Header="Номер документа" DisplayMemberBinding="{Binding DocN}"/>
+                    <GridViewColumn Header="Дата документа" DisplayMemberBinding="{Binding DocDate}"/>
+                    <GridViewColumn Header="ОКПО Поставщика" DisplayMemberBinding="{Binding OkpoPIP}"/>
+                    <GridViewColumn Header="ОКПО Перевозчика" DisplayMemberBinding="{Binding OkpoPrv}"/>
+                    <GridViewColumn Header="Тип контейнера" DisplayMemberBinding="{Binding UktPrTyp}"/>
+                    <GridViewColumn Header="Номер контейнера" DisplayMemberBinding="{Binding UktPrN}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Name="ClearSelect" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="13" Content="Снять выделение"  Click="ClearSelect_Click"/>
+        <Button Name="SelectAll" Grid.Column="3" Grid.Row="13" Content="Выделить все"  Click="SelectAll_Click"/>
+        <Button Name="ExportToExcel" Grid.Column="5" Grid.Row="13" Content="Экспорт в Эксель" Click="ExportToExcel_Click" />
+
+
+    </Grid>
+</Window>
